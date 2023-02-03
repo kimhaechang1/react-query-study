@@ -1,3 +1,8 @@
 /react-query/node_modules
 
 /server/node_modules
+
+/react-query/src/postTodo.js
+
+/react-query/src/Todos(Full).js
+

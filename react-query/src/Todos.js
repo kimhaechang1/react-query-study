@@ -1,58 +1,32 @@
-import {
-    useQuery,
-    useMutation,
-    useQueryClient,
-} from 'react-query';
+import { useQuery } from "react-query";
+import fetchTodoList from "./fetchTodoList";
 
-import axios from 'axios';
+const Todo = () =>{
 
-import fetchTodoList from './fetchTodoList';
-import postTodo from './postTodo';
+    const {data, isSuccess, isError, error, isLoading } = useQuery('todos',fetchTodoList)
 
-const Todos = () =>{
+    if(isLoading){
+        return <span>isLoading...</span>
+    }
 
-    // Access the client
-    const queryClient = useQueryClient();
+    if(isSuccess){
+        console.log(data);
+    }
 
-    // Queries
-    const {data, isLoading, error}  = useQuery('todos', fetchTodoList
-    ,{
-        onSuccess : data=>{
-            console.log(data);
-        },
-        onError: e=>{
-            console.log(e.message);
-        }
-    });
-
-    // Mutations
-    const mutation = useMutation(postTodo, {
-        onSuccess : ()=>{
-            // Invalidate and refetch
-            queryClient.invalidateQueries('todos')
-        }
-    })
+    if(isError){
+        return <span>Error : {error.message}</span>
+    }
 
     return(
         <div>
-            <button onClick={fetchTodoList}>dd</button>
+            <div>My TodoList</div>
             <ul>
-                {!isLoading && (data.data.map(todo=>(
-                    <li key={todo.id}>{todo.title}</li>
-                )))}
+                {data.map((todo)=>{
+                    return <li id={todo.id}>{todo.title}</li>
+                })}
             </ul>
-            <button
-                onClick={()=>{
-                    mutation.mutate({
-                        id:Date.now(),
-                        title:'Do Laundary'
-                    })
-                }}
-            >
-                Add Todo
-            </button>
         </div>
     )
 }
 
-export default Todos;
+export default Todo;

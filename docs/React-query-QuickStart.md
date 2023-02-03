@@ -27,10 +27,23 @@ json-server를 사용한다.
 사용할 테이블 이름만 설정 해주면 끝이다.
 
 ```json
-
-todos:[
-
-]
+// db.json
+{
+  "todos": [
+    {
+      "title": "알고리즘 공부",
+      "id": 1
+    },
+    {
+      "title": "React-Query 공부",
+      "id": 2
+    },
+    {
+      "title": "React-Query 정리",
+      "id": 3
+    }
+  ]
+}
 
 ```
 
@@ -56,46 +69,14 @@ import postTodo from './postTodo';
 const Todos = () =>{
     
     // Access the client
-    const queryClient = useQueryClient();
 
     // Queries
-    const { data, 
-        isLoading, 
-        error
-    }  = useQuery('todos', fetchTodoList
-    ,{
-        onSuccess : data=>{
-            console.log(data);
-        },
-        onError: e=>{
-            console.log(e.message);
-        }
-    });
 
     // Mutations
-    /*
-    const mutation = useMutation(postTodo, {
-        onSuccess : ()=>{
-            // Invalidate and refetch
-            queryClient.invalidateQueries('todos')
-        }
-    })
-
-    const mutation1 = useMutation(deleteTodoList,{
-        onSuccess : ()=>{
-            queryClient.invalidateQueries('todos')
-        }
-    })*/
+    
     return(
         <div>
-            <ul>
-                {!isLoading && (data.data.map((todo)=>(
-                    <>
-                    <li key={todo.id}>{todo.title}</li>
-                    </>
-                )))
-                }
-            </ul>
+            <div>My TodoList<div>
         </div>
     )
 }
@@ -125,5 +106,10 @@ const App = () => {
 export default App;
 ```
 
-### Queries
+
+
+
+
+
+
 
