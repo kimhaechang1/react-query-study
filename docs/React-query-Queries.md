@@ -105,7 +105,7 @@ const fetchTodoList = () =>{
 
 - ```data``` : 만약 쿼리가 ```success```상태라면, 데이터는 ```data```프로퍼티를 통해 사용 가능하다.
 
-- ```isFetching``` : 어떠한 상태여도, 만약 쿼리가 refetching중이라면, ```isFetching``` 값은 ```true``가 된다.
+- ```isFetching``` : 어떠한 상태여도, 만약 쿼리가 refetching중이라면, ```isFetching``` 값은 ```true```가 된다.
 
 대부분의 쿼리에 대하여,
 
@@ -115,7 +115,7 @@ const fetchTodoList = () =>{
 
 성공 상태를 렌더링하는것이 좋다.
 
-우리의 코드에서 위에 해당하는 말을 사용하여 코드를 깔끔하게 아래와 같이 수정한다.
+따라서 우리의 코드를 깔끔하게 아래와 같이 수정한다.
 
 ```javascript
 const { data, 
